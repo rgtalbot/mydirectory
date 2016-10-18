@@ -1,0 +1,16 @@
+.container, .nav-wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+nav {
+    background-color: blue;
+}
+
+footer.page-footer {
+    background-color: blue;
+}
+
+footer.page-footer .footer-copyright {
+    background-color: cornflowerblue;
+}

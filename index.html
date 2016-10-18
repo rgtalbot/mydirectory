@@ -1,24 +1,86 @@
 <!doctype html>
-<html>
+<html ng-app="myapp">
 
 <head>
-    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="app.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="contacts.js"></script>
+    <script src="app.js"></script>
 </head>
 
-<body ng-app = "myapp">
+<body>
+<nav>
+    <div class="nav-wrapper" ng-controller="HeaderCtrl">
+        <span class="logo">{{appDetails.title}}</span>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Company</a></li>
+            <li><a href="#">Other Link</a></li>
+            <li><a href="#">{{appDetails.name}}</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
 
-<div ng-controller = "HelloController" >
-    <h2>Welcome {{helloTo.title}} to the world of MyDirectory.io!</h2>
+
+    <div ng-controller="HelloController">
+        <h2>Welcome {{helloTo.title}} to the world of MyDirectory.io!</h2>
+    </div>
+
+    <div ng-controller="ContactListCtrl">
+        <form role="form">
+            <div class="row">
+                <form class="col s12">
+                    <input type="text" ng-model="searchText" id="search" placeholder="Search here...">
+                </form>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col s12 m6" ng-repeat="contact in contacts | orderBy:'last_name' | filter:searchText">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{contact.fullName}}</span>
+                        <p>Title: {{contact.jobTitle}}</p>
+                        <p>Department: {{contact.department}}</p>
+                        <p>Phone: {{contact.phone}}</p>
+                        <p>Extension: {{contact.ext}}</p>
+                        <p>Email: <a ng-href="mailto:{{contact.email}}">{{contact.email}}</a></p>
+                    </div>
+                    <div class="card-action">
+                        <a href="" ng-click="sendInMail(contact)">Send InMail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            2016 Copyright Sour Patch Coders
+        </div>
+    </div>
+</footer>
 
-<script>
-    angular.module("myapp", [])
-
-            .controller("HelloController", function($scope) {
-                $scope.helloTo = {};
-                $scope.helloTo.title = "Ronny";
-            });
-</script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 </body>
 </html>
