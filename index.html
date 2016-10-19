@@ -41,12 +41,20 @@
             <div class="col s12 m6" ng-repeat="contact in contacts | orderBy:'last_name' | filter:searchText">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">{{contact.fullName}}</span>
-                        <p>Title: {{contact.jobTitle}}</p>
-                        <p>Department: {{contact.department}}</p>
-                        <p>Phone: {{contact.phone}}</p>
-                        <p>Extension: {{contact.ext}}</p>
-                        <p>Email: <a ng-href="mailto:{{contact.email}}">{{contact.email}}</a></p>
+                        <div class="row">
+                            <div class="col s6">
+                                <img ng-src="{{contact.img}}" class="imgThumb">
+                            </div>
+                            <div class="col s6">
+                                <span class="card-title">{{contact.fullName}}</span>
+                                <p><span class="title">Title:</span> {{contact.jobTitle}}</p>
+                                <p><span class="title">Department:</span> {{contact.department}}</p>
+                                <p><span class="title">Phone:</span> {{contact.phone}}</p>
+                                <p><span class="title">Extension:</span> {{contact.ext}}</p>
+                                <p><span class="title">Email:</span> <a ng-href="mailto:{{contact.email}}">{{contact.email}}</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-action">
                         <a href="" ng-click="sendInMail(contact)">Send InMail</a>
@@ -61,7 +69,8 @@
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                    content.</p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>

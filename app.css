@@ -14,3 +14,12 @@ footer.page-footer {
 footer.page-footer .footer-copyright {
     background-color: cornflowerblue;
 }
+
+.title {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.imgThumb {
+    max-width: 200px;
+}
