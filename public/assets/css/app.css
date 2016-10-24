@@ -4,11 +4,23 @@
 }
 
 nav {
-    background-color: blue;
+    background-color: #3366CC;
+    color: #ffffff;
 }
 
-footer.page-footer {
-    background-color: blue;
+.signUpBtn {
+    background-color: #003399;
+    color: #6699ff;
+}
+
+.signUpBtn:hover {
+    background-color: #6699ff;
+    color: #003399;
+}
+
+footer {
+    background-color: #3366cc;
+    color: #ffffff;
 }
 
 footer.page-footer .footer-copyright {
@@ -23,3 +35,8 @@ footer.page-footer .footer-copyright {
 .imgThumb {
     max-width: 200px;
 }
+
+form {
+    padding: 10px;
+}
+

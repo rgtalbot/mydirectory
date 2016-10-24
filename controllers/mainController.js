@@ -1,17 +1,20 @@
 var express = require('express');
+var contacts = require('../data/contacts');
 var router = express.Router();
-var contacts = require('../../data/contacts');
+
+console.log(contacts);
 
 //ROUTING
 
 router.get('/', function(req,res) {
-    res.redirect('/directory');
+    res.render('index');
 });
 
 router.get('/directory', function(req,res) {
-    res.render('index', contacts)
+    res.render('directory', {data: contacts})
 });
 
+module.exports = router;
 
 // module.exports = function(app) {
 //     app.get('/', function(req,res) {
