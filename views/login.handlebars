@@ -1,24 +1,23 @@
-<div id="login-page" class="row">
-    <div class="col-xs-12 card-panel">
-        <form class="login-form">
+<div id="login-page" class="container">
+        <form method="POST" action="/login">
             <div class="row">
-                <div class="input-field col-xs-12 center">
-                    <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">
-                    <p class="center login-form-text">Company Name Login</p>
+                <div class="col-xs-6 col-xs-offset-3">
+                    <img src="{{logo}}" alt="logo" class="img-responsive imgThumb">
+                    <p class="center login-form-text">{{name}} Login</p>
                 </div>
             </div>
-            <div class="row margin">
-                <div class="input-field col-xs-12">
-                    <i class="prefix material-icons">perm_identity</i>
-                    <input id="username" type="text">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     <label for="username">Username</label>
+                    <input id="username" type="text" name="username" class="form-control">
                 </div>
             </div>
-            <div class="row margin">
-                <div class="input-field col-xs-12">
-                    <i class="prefix material-icons">lock_outline</i>
-                    <input id="password" type="password">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                     <label for="password">Password</label>
+                    <input id="password" type="password" name="password" class="form-control">
                 </div>
             </div>
 
@@ -31,8 +30,8 @@
             <!--</div>-->
 
             <div class="row">
-                <div class="input-field col s12">
-                    <a href="index.html" class="btn waves-effect waves-light col s12">Login</a>
+                <div class="col-xs-6 col-xs-offset-3">
+                    <button type="submit" class="btn btn-success">Login</button>
                 </div>
             </div>
 
@@ -44,5 +43,4 @@
             <!--</div>-->
 
         </form>
-    </div>
 </div>

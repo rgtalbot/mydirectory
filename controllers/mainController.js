@@ -9,18 +9,36 @@ router.get('/', function (req, res) {
     res.render('index');
 });
 
-router.get('/directory', function (req, res) {
-    res.render('directory', {data: contacts})
+router.post('/login', function (req, res) {
+    console.log(req.body.username);
+    console.log(req.body.password);
+    var directoryUrl = 'deathstar';
+    var queryString = "https://my-directory-api.herokuapp.com/api/auth/"+directoryUrl+"/login";
+    request.post(queryString, [req.body.username, req.body.password], function ( error, response, body) {
+        console.log(response.statusCode);
+        console.log(body);
+
+        if (response.statusCode == 200) {
+            res.render('directory', {data: contacts})
+        } else {
+            res.redirect("/deathstar")
+        }
+    });
 });
 
 router.get("/:organizationId", function (req, res) {
     var organization = req.params.organizationId;
     var queryString = "https://my-directory-api.herokuapp.com/api/v1/organizations/" + organization;
-    request.get(queryString).on('response', function( response ) {
-        console.log(response.toJSON());
-        if (response.statusCode === 200) {
+    request.get(queryString, function (error, response, body) {
+        var bodyParsed = JSON.parse(body);
+        console.log(bodyParsed);
+        var organization = {
+            name: bodyParsed.organization.name,
+            logo: bodyParsed.organization.logoUrl
+        };
 
-            res.render("login");
+        if (!error && response.statusCode == 200) {
+            res.render("login", organization);
         } else {
             res.redirect('/')
         }
