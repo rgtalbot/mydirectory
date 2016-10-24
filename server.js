@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var path = require('path');
+var methodOverride = require('method-override');
 
 //EXPRESS CONFIG
 var app = express();
@@ -12,10 +12,20 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
-app.use(express.static(path.join(__dirname,'app/public/')));
+app.use(express.static(process.cwd() + '/public'));
+
+//override POST with ?_method=
+app.use(methodOverride("_method"));
+
+//HANDLEBARS
+var expressHandlebars = require('express-handlebars');
+app.engine('handlebars', expressHandlebars({
+    defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
 
 //ROUTING
-require('./app/routing/html-routes')(app);
+var routes = require('./controllers/routing/html-routes');
 
 //LISTENER
 app.listen(PORT, function() {

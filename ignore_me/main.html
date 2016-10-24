@@ -17,15 +17,18 @@
 
 <!-- Modal Structure -->
 <div id="signUpModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" ng-app="valdiation" ng-controller="validationController">
         <h4>Create a new company directory</h4>
         <div class="row">
-            <form class="col s12">
+            <form name="newClient" class="col s12">
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="company" type="text" class="validate">
+                        <input id="company" type="text" ng-model="company" name="companyName" required>
                         <label for="company">Company Name</label>
+                        <div ng-messages="newClient.companyName.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
                     </div>
                 </div>
 
@@ -34,58 +37,64 @@
                         <span class="prefix">https://mydirectory.io/</span>
                     </div>
                     <div class="input-field col s8">
-                        <input id="url" type="text" class="validate">
+                        <input id="url" type="text" ng-model="url" class="validate">
                         <label for="url">URL</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="address" type="text" class="validate">
+                        <input id="address" type="text" ng-model="address" class="validate">
                         <label for="address">Address</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s7">
-                        <input id="city" type="text" class="validate">
+                        <input id="city" type="text" ng-model="city" class="validate">
                         <label for="city">City</label>
                     </div>
                     <div class="input-field col s2">
-                        <input id="state" type="text" class="validate">
+                        <input id="state" type="text" ng-model="state" class="validate">
                         <label for="state">State</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="zip" type="text" class="validate">
+                        <input id="zip" type="number" ng-model="zip" class="validate">
                         <label for="zip">Zip</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="text" class="validate">
+                        <input id="email" type="text" ng-model="email" class="validate">
                         <label for="email">Email</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="password" type="password" class="validate">
+                        <input id="password" type="password" name="password" ng-model="password">
                         <label for="password">Password</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="passwordRetype" type="password" class="validate">
+                        <input id="passwordRetype" type="password" ng-model="passwordRetype" ng-pattern="/^{{password}}$/" name="password2">
                         <label for="passwordRetype">Re-type Password</label>
+                        <div ng-messages="newClient.password2.$error">
+                            <div ng-message="pattern">Passwords do not match</div>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Sign Up</a>
+        <button type="submit" class="waves-effect waves-green btn-flat btn" ng-disabled="newClient.$invalid">Sign Up</button>
     </div>
 </div>
 
+<div id="signUpModal2" class="modal">
+
+</div>
 
 
 <div class="container">
@@ -142,8 +151,10 @@
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 <script src="assets/js/contacts.js"></script>
 <script src="assets/js/app.js"></script>
+<script src="assets/js/validation.js"></script>
 </body>
 </html>
