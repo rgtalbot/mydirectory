@@ -1,20 +1,50 @@
 var express = require('express');
 var contacts = require('../data/contacts');
+var request = require('request');
 var router = express.Router();
-
-console.log(contacts);
 
 //ROUTING
 
-router.get('/', function(req,res) {
+router.get('/', function (req, res) {
     res.render('index');
 });
 
-router.get('/directory', function(req,res) {
+router.get('/directory', function (req, res) {
     res.render('directory', {data: contacts})
 });
 
+router.get("/:organizationId", function (req, res) {
+    var organization = req.params.organizationId;
+    var queryString = "https://my-directory-api.herokuapp.com/api/v1/organizations/" + organization;
+    request.get(queryString).on('response', function( response ) {
+        console.log(response.toJSON());
+        if (response.statusCode === 200) {
+
+            res.render("login");
+        } else {
+            res.redirect('/')
+        }
+    });
+});
+
+
+//CHECKS TO SEE IF URL IS AVAILABLE IN SIGN UP FORM
+router.get('/validate', function (req, res) {
+    var organization = req.query.url;
+    var queryString = "https://my-directory-api.herokuapp.com/api/v1/organizations/" + organization;
+    request.get(queryString).on('response', function (response) {
+        if (response.statusCode === 200) {
+            res.writeHead(400, 'URL Unavailable');
+            res.send();
+        } else if (response.statusCode === 404) {
+            res.sendStatus(200);
+        }
+    });
+});
+
+
 module.exports = router;
+
 
 // module.exports = function(app) {
 //     app.get('/', function(req,res) {
