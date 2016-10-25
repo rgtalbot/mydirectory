@@ -1,7 +1,10 @@
 <form id="signUpForm" name="signUpForm" role="form" data-toggle="validator">
     <div class="form-group">
         <label for="companyName">Company Name</label>
-        <input type="text" class="form-control" id="companyName" name="companyName" onchange="ajax_call()" required>
+        <!--max 100 characters-->
+        <input type="text" class="form-control" id="companyName" name="companyName" onchange="ajax_call()" required
+               data-minlength="3">
+        <div class="help-block with-errors"></div>
 
 
     </div>
@@ -10,7 +13,7 @@
         <div class="input-group">
             <span class="input-group-addon" id="mydirectoryAddOn">mydirectory.io/</span>
             <input type="text" class="form-control" id="url" name="url" data-remote="/validate"
-                   data-remote-error="Sorry that URL is not available">
+                   data-remote-error="Sorry that URL is not available" maxlength="20" pattern="^[a-z0-9-]{1,}$" data-pattern-error="Lowercase letters, numbers, and dashes only">
             <div class="help-block with-errors"></div>
 
 
@@ -18,16 +21,16 @@
     </div>
     <div class="form-group">
         <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" name="address" required>
-
+        <input type="text" class="form-control" id="address" name="address" required maxlength="100">
+        <div class="help-block with-errors"></div>
 
     </div>
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" name="city" required>
-
+                <input type="text" class="form-control" id="city" name="city" required maxlength="100">
+                <div class="help-block with-errors"></div>
 
             </div>
         </div>
@@ -89,30 +92,29 @@
                     <option value="WV">West Virginia</option>
                     <option value="WY">Wyoming</option>
                 </select>
-
+                <div class="help-block with-errors"></div>
 
             </div>
         </div>
         <div class="col-xs-3">
             <div class="form-group">
                 <label for="zip">Zip Code</label>
-                <input type="number" class="form-control" id="zip" name="zip" data-minlength="5" data-maxlength="5"
-                       required>
-
+                <input type="text" class="form-control" id="zip" name="zip" maxlength="5" data-minlength="5" required pattern="^[0-9]{1,}$">
+                <div class="help-block with-errors"></div>
 
             </div>
         </div>
     </div>
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <input type="email" class="form-control" id="email" name="email" required pattern="^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$">
         <div class="help-block with-errors"></div>
 
 
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required data-minlength="6">
+        <input type="password" class="form-control" id="password" name="password" required data-minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$" data-pattern-error="Must contain at least one number and one letter" data-minlength-error="Must be at least 8 characters long">
         <div class="help-block with-errors"></div>
 
 
@@ -127,14 +129,14 @@
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                <input type="text" maxlength="50" class="form-control" id="firstName" name="firstName" required>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                <input type="text" class="form-control" id="lastName" name="lastName" maxlength="50" required>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
@@ -143,7 +145,7 @@
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="title">Job Title</label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <input type="text" maxlength="50" class="form-control" id="title" name="title" required>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
@@ -159,20 +161,20 @@
         <div class="col-xs-8">
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="text" class="form-control" id="phone" name="phone" required>
+                <input type="text" class="form-control" id="phone" name="phone" required pattern="^[0-9]{1,}$" data-minlength="10" maxlength="10" data-pattern-error="Numbers only" data-minlength-error="Please enter a valid phone number">
                 <div class="help-block with-errors"></div>
             </div>
         </div>
         <div class="col-xs-4">
             <div class="form-group">
                 <label for="ext">Extension</label>
-                <input type="text" class="form-control" id="ext" name="ext" required>
+                <input type="text" class="form-control" id="ext" name="ext" pattern="^[0-9]{1,}$" data-minlength="1" maxlength="5" data-pattern-error="Numbers only">
                 <div class="help-block with-errors"></div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn-flat btn">Sign Up
+        <button type="submit" class="btn-flat btn" id="submit">Sign Up
         </button>
     </div>
 </form>

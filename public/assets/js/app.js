@@ -1,7 +1,17 @@
 function ajax_call() {
-    var organization = $('#companyName').val().toLowerCase().replace(/\s/g, '-');
+    var organization = $('#companyName').val().toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9-]/gi, "");
     console.log(organization);
-    $("#url").val(organization);
+
+
+    var string = organization;
+    var length = 20;
+    var trimmedString = string.length > length ?
+    string.substring(0, 20) :
+        string;
+
+    console.log(trimmedString);
+    $("#url").val(trimmedString);
+
 }
 
 $("#signUpModal").on("hidden.bs.modal", function () {
@@ -9,9 +19,10 @@ $("#signUpModal").on("hidden.bs.modal", function () {
 });
 
 $("#signUpForm").validator().on('submit', function (e) {
-    if (e.defaultPrevented) {
-        //form not valid
+    if (e.isDefaultPrevented()) {
+        console.log(e.isDefaultPrevented());
     } else {
+        $("#submit").show();
         //submit that shiz
         var company = $('#companyName').val().trim();
         var url = $("#url").val().trim();
@@ -46,11 +57,9 @@ $("#signUpForm").validator().on('submit', function (e) {
             ext: ext
         };
 
-        $.post("https://my-directory-api.herokuapp.com/api/auth/register", newCompany, function (result) {
-            console.log(result)
-        }).done(function () {
-            alert('success');
-        });
+
+        $.post('/new', newCompany);
+
 
         $("#signUpForm")[0].reset();
         return false;
