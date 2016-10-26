@@ -1,0 +1,116 @@
+<!doctype html>
+<html ng-app="myapp">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="assets/js/contacts.js"></script>
+    <script src="assets/js/app.js"></script>
+</head>
+
+<body>
+<nav>
+    <div class="nav-wrapper" ng-controller="HeaderCtrl">
+        <span class="logo">{{appDetails.title}}</span>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Company</a></li>
+            <li><a href="#">Other Link</a></li>
+            <li><a href="#">{{appDetails.name}}</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+
+
+    <div ng-controller="HelloController">
+        <h2>Welcome {{helloTo.title}} to the world of MyDirectory.io!</h2>
+    </div>
+
+    <div ng-controller="ContactListCtrl">
+        <div class="row">
+            <div class="col s7 m7 l7">
+                <form role="form">
+                    <div class="row">
+                        <form class="col s12">
+                            <input type="text" ng-model="searchText" id="search" placeholder="Search here...">
+                        </form>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col s12 m12" ng-repeat="contact in contacts | orderBy:'last_name' | filter:searchText">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <img ng-src="{{contact.img}}" class="imgThumb">
+                                    </div>
+                                    <div class="col s6">
+                                        <span class="card-title">{{contact.fullName}}</span>
+                                        <p><span class="title">Title:</span> {{contact.jobTitle}}</p>
+                                        <p><span class="title">Department:</span> {{contact.department}}</p>
+                                        <p><span class="title">Phone:</span> {{contact.phone}}</p>
+                                        <p><span class="title">Extension:</span> {{contact.ext}}</p>
+                                        <p><span class="title">Email:</span> <a ng-href="mailto:{{contact.email}}">{{contact.email}}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="" ng-click="sendInMail(contact)">Send InMail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4 m4 l4 offset-s1 offset-m1 offset-l1">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12">
+                                <span class="card-title">Company Announcements</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum consequat erat sed fermentum. Fusce vel est vitae est volutpat ultricies a ac dolor. Maecenas eleifend tempus ipsum, nec cursus felis malesuada eget. Phasellus imperdiet massa sed lectus dictum, viverra vehicula enim venenatis. Nulla sagittis neque sed sem dignissim bibendum. Phasellus commodo ut orci non fringilla. Quisque quis luctus erat. Donec volutpat congue purus. Sed porttitor urna vel urna volutpat tincidunt. Donec vitae accumsan diam. Aliquam dolor diam, eleifend non lectus a, tempor sodales mi. In hac habitasse platea dictumst. Sed sodales justo eu libero dictum dapibus. In maximus tristique urna, vitae volutpat sapien fringilla vel.
+
+                                    In hac habitasse platea dictumst. Curabitur at pulvinar nulla. Nunc dignissim viverra tristique. Nulla volutpat vulputate pharetra. Etiam lacinia non diam a feugiat. Praesent ullamcorper aliquet congue. Vivamus erat nisl, maximus a bibendum a, pretium nec odio. Praesent metus sapien, consectetur maximus interdum ut, porttitor aliquet nulla. Nam viverra elementum viverra. Suspendisse tellus risus, pharetra in tincidunt vitae, mollis quis lacus. Pellentesque volutpat, odio eu tincidunt elementum, enim nisl pellentesque velit, vitae molestie velit ante in sapien. Praesent at velit id est condimentum venenatis. Suspendisse laoreet consectetur odio, vel tempus erat tempor vel. Aliquam hendrerit eu erat porta scelerisque.
+
+                                    Sed elementum vitae felis suscipit finibus. Proin sodales iaculis magna, eget vestibulum mi gravida in. Nullam non aliquet enim, ac tempus est. In elementum id leo sed aliquam. Aenean vehicula felis a ultrices ullamcorper. Suspendisse vel tellus eu urna semper lacinia id at odio. In viverra finibus augue eu porttitor. Etiam at sem quis dui sagittis tempus at ut dui. Nam id eleifend nibh, id consectetur metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor sit amet lacus quis ultricies. Fusce rutrum nisl non tortor suscipit, sed elementum elit porta. Aenean elementum tortor eu nunc dapibus blandit placerat et arcu. Sed vulputate condimentum velit id blandit. Aliquam vulputate elit eget accumsan tristique. Quisque libero mi, posuere ut elit eget, laoreet fermentum erat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                    content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            2016 Copyright Sour Patch Coders
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+</body>
+</html>

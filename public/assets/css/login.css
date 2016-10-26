@@ -1,0 +1,66 @@
+.login-form {
+    width: 280px;
+}
+
+.login-form-text {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+.margin {
+    margin: 0 !important;
+}
+
+.profile-image-login {
+    width: 100px;
+    height: 100px !important;
+}
+
+.login-text {
+    margin-top: -6px;
+    margin-left: -6px !important;
+}
+
+.medium-small {
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: cornflowerblue;
+}
+
+.btn {
+    background-color: cornflowerblue;
+}
+
+.input-field .prefix.active {
+    color: cornflowerblue;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: cornflowerblue;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid cornflowerblue;
+    box-shadow: 0 1px 0 0 cornflowerblue;
+}
+
+/* label focus color */
+.input-field input[type=password]:focus + label {
+    color: cornflowerblue;
+}
+/* label underline focus color */
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid cornflowerblue;
+    box-shadow: 0 1px 0 0 cornflowerblue;
+}
+
+.input-field input[type=checkbox]:checked+label:before{
+    border-right-color: cornflowerblue;
+    border-bottom-color: cornflowerblue;
+}

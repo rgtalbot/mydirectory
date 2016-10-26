@@ -1,0 +1,45 @@
+.container, .nav-wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+nav {
+    background-color: #3366CC;
+    color: #ffffff;
+}
+
+.signUpBtn {
+    background-color: #003399;
+    color: #6699ff;
+}
+
+.signUpBtn:hover {
+    background-color: #6699ff;
+    color: #003399;
+}
+
+footer {
+    background-color: #3366cc;
+    color: #ffffff;
+}
+
+footer.page-footer .footer-copyright {
+    background-color: cornflowerblue;
+}
+
+.title {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.imgThumb {
+    max-width: 300px;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius: 50%;
+}
+
+form {
+    padding: 10px;
+}
+

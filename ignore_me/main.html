@@ -1,0 +1,160 @@
+<!doctype html>
+<html ng-app="myapp">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<body>
+<nav>
+    <div class="nav-wrapper" ng-controller="HeaderCtrl">
+        <span class="logo">MyDirectory.IO</span>
+        <!-- Modal Trigger -->
+        <a data-target="signUpModal" class="modal-trigger right waves-effect waves-light btn" href="#signUpModal">SIGN UP</a>
+    </div>
+</nav>
+
+<!-- Modal Structure -->
+<div id="signUpModal" class="modal">
+    <div class="modal-content" ng-app="valdiation" ng-controller="validationController">
+        <h4>Create a new company directory</h4>
+        <div class="row">
+            <form name="newClient" class="col s12">
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="company" type="text" ng-model="company" name="companyName" required>
+                        <label for="company">Company Name</label>
+                        <div ng-messages="newClient.companyName.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s4">
+                        <span class="prefix">https://mydirectory.io/</span>
+                    </div>
+                    <div class="input-field col s8">
+                        <input id="url" type="text" ng-model="url" class="validate">
+                        <label for="url">URL</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="address" type="text" ng-model="address" class="validate">
+                        <label for="address">Address</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s7">
+                        <input id="city" type="text" ng-model="city" class="validate">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="state" type="text" ng-model="state" class="validate">
+                        <label for="state">State</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="zip" type="number" ng-model="zip" class="validate">
+                        <label for="zip">Zip</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="text" ng-model="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="password" type="password" name="password" ng-model="password">
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="passwordRetype" type="password" ng-model="passwordRetype" ng-pattern="/^{{password}}$/" name="password2">
+                        <label for="passwordRetype">Re-type Password</label>
+                        <div ng-messages="newClient.password2.$error">
+                            <div ng-message="pattern">Passwords do not match</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="waves-effect waves-green btn-flat btn" ng-disabled="newClient.$invalid">Sign Up</button>
+    </div>
+</div>
+
+<div id="signUpModal2" class="modal">
+
+</div>
+
+
+<div class="container">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum consequat erat sed fermentum. Fusce vel
+        est vitae est volutpat ultricies a ac dolor. Maecenas eleifend tempus ipsum, nec cursus felis malesuada eget.
+        Phasellus imperdiet massa sed lectus dictum, viverra vehicula enim venenatis. Nulla sagittis neque sed sem
+        dignissim bibendum. Phasellus commodo ut orci non fringilla. Quisque quis luctus erat. Donec volutpat congue
+        purus. Sed porttitor urna vel urna volutpat tincidunt. Donec vitae accumsan diam. Aliquam dolor diam, eleifend
+        non lectus a, tempor sodales mi. In hac habitasse platea dictumst. Sed sodales justo eu libero dictum dapibus.
+        In maximus tristique urna, vitae volutpat sapien fringilla vel.
+
+        In hac habitasse platea dictumst. Curabitur at pulvinar nulla. Nunc dignissim viverra tristique. Nulla volutpat
+        vulputate pharetra. Etiam lacinia non diam a feugiat. Praesent ullamcorper aliquet congue. Vivamus erat nisl,
+        maximus a bibendum a, pretium nec odio. Praesent metus sapien, consectetur maximus interdum ut, porttitor
+        aliquet nulla. Nam viverra elementum viverra. Suspendisse tellus risus, pharetra in tincidunt vitae, mollis quis
+        lacus. Pellentesque volutpat, odio eu tincidunt elementum, enim nisl pellentesque velit, vitae molestie velit
+        ante in sapien. Praesent at velit id est condimentum venenatis. Suspendisse laoreet consectetur odio, vel tempus
+        erat tempor vel. Aliquam hendrerit eu erat porta scelerisque.
+
+        Sed elementum vitae felis suscipit finibus. Proin sodales iaculis magna, eget vestibulum mi gravida in. Nullam
+        non aliquet enim, ac tempus est. In elementum id leo sed aliquam. Aenean vehicula felis a ultrices ullamcorper.
+        Suspendisse vel tellus eu urna semper lacinia id at odio. In viverra finibus augue eu porttitor. Etiam at sem
+        quis dui sagittis tempus at ut dui. Nam id eleifend nibh, id consectetur metus. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Aliquam auctor sit amet lacus quis ultricies. Fusce rutrum nisl non tortor
+        suscipit, sed elementum elit porta. Aenean elementum tortor eu nunc dapibus blandit placerat et arcu. Sed
+        vulputate condimentum velit id blandit. Aliquam vulputate elit eget accumsan tristique. Quisque libero mi,
+        posuere ut elit eget, laoreet fermentum erat.
+    </p>
+</div>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                    content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            2016 Copyright Sour Patch Coders
+        </div>
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<script src="assets/js/contacts.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/validation.js"></script>
+</body>
+</html>

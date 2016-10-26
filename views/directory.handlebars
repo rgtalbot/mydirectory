@@ -1,0 +1,27 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-7">
+            {{#each data}}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="{{ this.img }}" class="img-responsive">
+                            </div>
+                            <div class="col-xs-8">
+                                <h4>{{ this.first_name }}  {{ this.last_name }}</h4>
+                                <p><span class="title">Title: </span>{{ this.jobTitle }}</p>
+                                <p><span class="title">Department: </span>{{ this.department }}</p>
+                                <p><span class="title">Phone: </span>{{ this.phone }}</p>
+                                <p><span class="title">Ext: </span>{{ this.ext }}</p>
+                                <p><span class="title">Email: </span>{{ this.email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
