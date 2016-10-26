@@ -7,7 +7,8 @@ var Contacts = [
         phone: "(407) 325-8449",
         img: "https://avatars0.githubusercontent.com/u/18399341?v=3&s=466",
         ext: "n/a",
-        email: "rgtalbot@gmail.com"
+        email: "rgtalbot@gmail.com",
+        admin: true
     }, {
         first_name: "Ronny",
         last_name: "Tomasetti",

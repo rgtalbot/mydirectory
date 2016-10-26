@@ -4,22 +4,29 @@ var request = require('request');
 var localStorage = require('localStorage');
 var router = express.Router();
 
+var myDirectory = "https://my-directory-api.herokuapp.com/api/v1/";
+
 //ROUTING
 
+
+//REDIRECT TO HOME PAGE
 router.get('/', function (req, res) {
     res.redirect('/home');
 });
 
+
+//RENDER THE HOME PAGE
 router.get('/home', function (req, res) {
     res.render('index')
 });
 
-
+//THE POST TO LOGIN AND GET A JWT TO REDIRECT WITH
 router.post('/:organizationId/login', function (req, res) {
 
     var directoryUrl = req.params.organizationId;
 
-    var queryString = "https://my-directory-api.herokuapp.com/api/auth/" + directoryUrl + "/login";
+    var queryString = myDirectory + "auth/" + directoryUrl + "/login";
+
     var redirectString = "/" + directoryUrl;
 
     request({
@@ -42,8 +49,9 @@ router.post('/:organizationId/login', function (req, res) {
     });
 });
 
+//THE COMPANY DIRECTORY ROUTE IF LOGGED IN
 router.get('/:organizationId/directory', function(req, res) {
-    var queryString = "https://my-directory-api.herokuapp.com/api/v1/" + req.params.organizationId + "/contacts";
+    var queryString = myDirectory + req.params.organizationId + "/contacts";
     request({
         url: queryString,
         method: "GET",
@@ -51,8 +59,9 @@ router.get('/:organizationId/directory', function(req, res) {
             "x-access-token": localStorage.getItem('token')
         }
     }, function (error, response, body) {
-        if (response.statusCode == 200) {
-            console.log("FUCK RONNY")
+        var data = JSON.parse(body);
+        if (!error && response.statusCode == 200) {
+            res.render("directory", {contacts: data.contacts, user: data.user, organization: data.organization})
         }
     });
 });
@@ -62,7 +71,7 @@ router.get('/:organizationId/directory', function(req, res) {
 router.get('/validate', function (req, res) {
     var organization = req.query.url;
     console.log('check');
-    var queryString = "https://my-directory-api.herokuapp.com/api/v1/organizations/" + organization;
+    var queryString = myDirectory + "organizations/" + organization;
     request.get(queryString).on('response', function (response) {
         if (response.statusCode === 200) {
             res.writeHead(400, 'URL Unavailable');
@@ -73,18 +82,39 @@ router.get('/validate', function (req, res) {
     });
 });
 
+
+//SIGN UP FORM POST AND REDIRECT
 router.post('/new', function(req, res) {
-   request.post("https://my-directory-api.herokuapp.com/api/auth/register", req.body , function (error, response, body) {}).on('response', function() {
+   request.post(myDirectory + "auth/register", req.body , function (error, response, body) {}).on('response', function() {
        console.log(req.body.url);
    });
 
     res.redirect('/home');
 });
 
+
+//DUMMY FILE PATH TO EDIT DIRECTORY
+router.get('/dummydirectory', function (req,res) {
+    res.render("directory", {employees: contacts, user: {
+        first_name: "Ryan",
+        last_name: "Talbot",
+        department: "Front-end",
+        jobTitle: "Front End Wizard",
+        phone: "(407) 325-8449",
+        img: "https://avatars0.githubusercontent.com/u/18399341?v=3&s=466",
+        ext: "n/a",
+        email: "rgtalbot@gmail.com",
+        admin: true
+    }, company: {
+            name: "FUCK RONNY"
+    }})
+});
+
+//GETTING TO A SPECIFIC COMPANY PAGE
 router.get("/:organizationId?", function (req, res) {
     var organization = req.params.organizationId;
 
-    var queryString = "https://my-directory-api.herokuapp.com/api/v1/organizations/" + organization;
+    var queryString = myDirectory + "organizations/" + organization;
     request.get(queryString, function (error, response, body) {
         console.log(response.statusCode);
         if (!error && response.statusCode == 200) {
