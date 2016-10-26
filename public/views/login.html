@@ -1,0 +1,46 @@
+<div id="login-page" class="container">
+    <form method="POST" action="/{{orgId}}/login">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <img src="{{logo}}" alt="logo" class="img-responsive imgThumb">
+                <p class="center login-form-text">{{name}} Login</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <label for="username">Username</label>
+                <input id="username" type="text" name="username" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" class="form-control">
+            </div>
+        </div>
+
+        <!--REMEMBER ME DOES NOT WORK-->
+        <!--<div class="row">-->
+        <!--<div class="input-field col s12 m12 l12  login-text">-->
+        <!--<input type="checkbox" id="remember-me" />-->
+        <!--<label for="remember-me">Remember me</label>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+        </div>
+
+        <!--FORGOT PASSWORD DOES NOT WORK-->
+        <!--<div class="row">-->
+        <!--<div class="input-field col offset-s6 offset-m6 offset-l6 s6 m6 l6">-->
+        <!--<p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>-->
+        <!--</div>-->
+        <!--</div>-->
+
+    </form>
+</div>
