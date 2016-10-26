@@ -1,18 +1,3 @@
-<!--HEADER-->
-<nav class="navbar">
-    <div class="container-fluid container">
-        <div class="navbar-header">
-            <span class="logo">MyDirectory.io</span>
-        </div>
-        <div class="nav navbar-nav navbar-right">
-            <button type="button" class="btn signUpBtn btn-lg" data-toggle="modal" data-target="#signUpModal">SIGN
-                UP
-            </button>
-        </div>
-    </div>
-</nav>
-
-<!-- Modal Structure -->
 <div id="signUpModal" class="modal" aria-labelledby="myModalLabel" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -31,12 +16,10 @@
                     <label for="url">MyDirectory URL</label>
                     <div class="input-group">
                         <span class="input-group-addon" id="mydirectoryAddOn">mydirectory.io/</span>
-                        <input type="text" class="form-control" id="url" name="urlName" maxlength="20" ng-model="urlInput" required signup-directive>
-
-                        <!--<input type="text" class="form-control" id="url" name="urlName" maxlength="20" pattern="^[a-z0-9-]{1,}$" data-pattern-error="Lowercase letters, numbers, and dashes only">-->
+                        <input type="text" class="form-control" id="url" name="url" data-remote="/validate"
+                               data-remote-error="Sorry that URL is not available" maxlength="20" pattern="^[a-z0-9-]{1,}$" data-pattern-error="Lowercase letters, numbers, and dashes only">
                     </div>
                     <div class="help-block with-errors"></div>
-                    <span ng-show="signUpForm.urlName.$touched && signUpForm.urlName.$invalid">Name already taken</span>
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
@@ -200,33 +183,3 @@
         </div>
     </div>
 </div>
-
-<div class="container">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum consequat erat sed fermentum. Fusce vel
-        est vitae est volutpat ultricies a ac dolor. Maecenas eleifend tempus ipsum, nec cursus felis malesuada eget.
-        Phasellus imperdiet massa sed lectus dictum, viverra vehicula enim venenatis. Nulla sagittis neque sed sem
-        dignissim bibendum. Phasellus commodo ut orci non fringilla. Quisque quis luctus erat. Donec volutpat congue
-        purus. Sed porttitor urna vel urna volutpat tincidunt. Donec vitae accumsan diam. Aliquam dolor diam, eleifend
-        non lectus a, tempor sodales mi. In hac habitasse platea dictumst. Sed sodales justo eu libero dictum dapibus.
-        In maximus tristique urna, vitae volutpat sapien fringilla vel.
-
-        In hac habitasse platea dictumst. Curabitur at pulvinar nulla. Nunc dignissim viverra tristique. Nulla volutpat
-        vulputate pharetra. Etiam lacinia non diam a feugiat. Praesent ullamcorper aliquet congue. Vivamus erat nisl,
-        maximus a bibendum a, pretium nec odio. Praesent metus sapien, consectetur maximus interdum ut, porttitor
-        aliquet nulla. Nam viverra elementum viverra. Suspendisse tellus risus, pharetra in tincidunt vitae, mollis quis
-        lacus. Pellentesque volutpat, odio eu tincidunt elementum, enim nisl pellentesque velit, vitae molestie velit
-        ante in sapien. Praesent at velit id est condimentum venenatis. Suspendisse laoreet consectetur odio, vel tempus
-        erat tempor vel. Aliquam hendrerit eu erat porta scelerisque.
-
-        Sed elementum vitae felis suscipit finibus. Proin sodales iaculis magna, eget vestibulum mi gravida in. Nullam
-        non aliquet enim, ac tempus est. In elementum id leo sed aliquam. Aenean vehicula felis a ultrices ullamcorper.
-        Suspendisse vel tellus eu urna semper lacinia id at odio. In viverra finibus augue eu porttitor. Etiam at sem
-        quis dui sagittis tempus at ut dui. Nam id eleifend nibh, id consectetur metus. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Aliquam auctor sit amet lacus quis ultricies. Fusce rutrum nisl non tortor
-        suscipit, sed elementum elit porta. Aenean elementum tortor eu nunc dapibus blandit placerat et arcu. Sed
-        vulputate condimentum velit id blandit. Aliquam vulputate elit eget accumsan tristique. Quisque libero mi,
-        posuere ut elit eget, laoreet fermentum erat.
-    </p>
-</div>
-
-<script src="../js/signup.js"></script>

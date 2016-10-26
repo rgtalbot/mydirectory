@@ -1,5 +1,5 @@
-angular.module('DirectoryCtrl', []).controller("DirectoryController", function ($scope) {
+angular.module('DirectoryCtrl', []).controller("DirectoryController", function ($scope, data) {
 
-    $scope.tagline = 'Nothing beats a pocket protector!';
+    $scope.details = data.organization;
 
 });
