@@ -18,6 +18,7 @@ $("#signUpModal").on("hidden.bs.modal", function () {
     $("#signUpForm")[0].reset();
 });
 
+
 $("#signUpForm").validator().on('submit', function (e) {
     if (e.isDefaultPrevented()) {
         console.log(e.isDefaultPrevented());
@@ -46,7 +47,7 @@ $("#signUpForm").validator().on('submit', function (e) {
             city: city,
             state: state,
             zip: zip,
-            directoryUrl: "https://mydirectory-io.herokuapp.com/" + url,
+            directoryUrl: url,
             email: email,
             password: password,
             firstName: firstName,
@@ -65,3 +66,8 @@ $("#signUpForm").validator().on('submit', function (e) {
         return false;
     }
 });
+
+
+
+
+
