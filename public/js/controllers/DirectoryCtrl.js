@@ -1,5 +1,5 @@
-angular.module('DirectoryCtrl', []).controller("DirectoryController", function ($scope, data) {
+angular.module('DirectoryCtrl', []).controller("DirectoryController", "$state", "data", "$scope", function ($scope, data, $state) {
 
-    $scope.details = data.organization;
+    console.log("success");
 
 });
