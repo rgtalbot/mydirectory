@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <label for="companyName">Company Name</label>
                     <!--max 100 characters-->
-                    <input type="text" class="form-control" id="companyName" name="companyName" onchange="ajax_call()" required
+                    <input type="text" class="form-control" id="companyName" name="companyName" required
                            data-minlength="3">
                     <div class="help-block with-errors"></div>
 
@@ -31,12 +31,11 @@
                     <label for="url">MyDirectory URL</label>
                     <div class="input-group">
                         <span class="input-group-addon" id="mydirectoryAddOn">mydirectory.io/</span>
-                        <input type="text" class="form-control" id="url" name="urlName" maxlength="20" ng-model="urlInput" required signup-directive>
+                        <input type="text" class="form-control" id="url" name="urlName" maxlength="20" ng-model="urlInput" ng-change="urlValidate()" required>
 
                         <!--<input type="text" class="form-control" id="url" name="urlName" maxlength="20" pattern="^[a-z0-9-]{1,}$" data-pattern-error="Lowercase letters, numbers, and dashes only">-->
                     </div>
-                    <div class="help-block with-errors"></div>
-                    <span ng-show="signUpForm.urlName.$touched && signUpForm.urlName.$invalid">Name already taken</span>
+                    <span class="error" ng-show="signUpForm.urlInput.$error.taken">That URL is already taken</span>
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>

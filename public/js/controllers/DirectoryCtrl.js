@@ -1,37 +1,35 @@
-angular.module('DirectoryCtrl', []).controller("DirectoryController", ["$scope", "$state", "$stateParams", "$http", function ($scope, $state, $stateParams, $http) {
+angular.module('DirectoryCtrl', []).controller("DirectoryController", ["$scope", "$state", "$stateParams", "$http", "$sessionStorage", function ($scope, $state, $stateParams, $http, $sessionStorage) {
 
-    var token = $stateParams.token.token;
+
+
     var orgId = $stateParams.orgId;
+
+    console.log(orgId);
 
     var queryString = "https://my-directory-api.herokuapp.com/api/v1/" + orgId + "/contacts";
 
+    if($sessionStorage.currentUser.token) {
+        $http.get(queryString, {
+            headers: {
+                "x-access-token": $sessionStorage.currentUser.token
+            }
+        }).then(function successCallback(response) {
+            console.log(response);
+            var contactList = response.data.contacts;
+            $scope.user = response.data.user;
+            var organization = response.data.organization;
 
-    $http.get(queryString, {
-        headers: {
-            "x-access-token": token
-        }
-    }).then(function successCallback(response) {
-        console.log(response);
-        var contactList = response.data.contacts;
-        $scope.user = response.data.user;
-        var organization = response.data.organization;
 
+            $scope.contacts = contactList.map(function (contact) {
+                contact.fullName = `${contact.firstName} ${contact.lastName}`;
+                return contact;
+            });
 
-        $scope.contacts = contactList.map(function(contact) {
-            contact.fullName = `${contact.firstName} ${contact.lastName}`;
-            return contact;
+        }, function errorCallback(response) {
+            $state.go('login', {orgId: orgId});
         });
-        $scope.sendInMail = function (contact) {
-            console.log("email to: ", contact);
-        };
-
-
-        console.log('success');
-    }, function errorCallback(response) {
-        console.log('failure');
-    });
+    } else {
+        $state.go('login', {orgId: orgId});
+    }
 
 }]);
-
-
-// res.render("directory", {contacts: data.contacts, user: data.user, organization: data.organization})

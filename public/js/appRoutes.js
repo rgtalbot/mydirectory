@@ -1,40 +1,36 @@
-angular.module('appRoutes', ['ui.router']).config(['$routeProvider', '$locationProvider', '$stateProvider', function ($routeProvider, $locationProvider, $stateProvider) {
+angular.module('appRoutes', ['ui.router']).config(['$locationProvider', '$stateProvider', function ($locationProvider, $stateProvider) {
 
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: 'views/home.html'
+            templateUrl: 'views/home.html',
+            controller: "MainController"
         })
         .state('login', {
             url: '/:orgId',
             templateUrl: 'views/login.html',
             resolve: {
-                data: function ($http, $stateParams, $state, $q) {
-                    var defObj = $q.defer();
-                    $http({
+                items: ["$http", "$stateParams", "$state", function ($http, $stateParams, $state) {
+                   return $http({
                         method: 'GET',
                         url: "https://my-directory-api.herokuapp.com/api/v1/organizations/" + $stateParams.orgId
                     }).then(function successCallback(response) {
-                        var data = {
-                            organization: response.data,
-                            directoryUrl: $stateParams.orgId
-                        };
-                        defObj.resolve(data);
+                        console.log(response.data);
+                        return ({
+                            org: response.data,
+                            id: $stateParams.orgId
+                        });
                     }, function errorCallback(response) {
                         $state.go('home');
                     });
-                    return defObj.promise;
-                }
+                }]
             },
             controller: "LoginController"
         })
         .state('directory', {
-            url: ":orgId/directory",
+            url: "/:orgId/directory",
             templateUrl: "views/directory.html",
-            controller: "DirectoryController",
-            params: {
-                token: null
-            }
+            controller: "DirectoryController"
         });
 
     $locationProvider.html5Mode(true);
