@@ -1,1 +1,68 @@
-<div ng-controller="DirectoryController"><h1>FUCKING MADE IT HERE</h1></div>
+<nav class="navbar">
+    <div class="container-fluid container">
+        <div class="navbar-header">
+            <span class="logo">MyDirectory.io</span>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+            <a href="">{{user.contactCard.firstName}}</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-7">
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control" placeholder="search" id="searchEmp" ng-model="searchText">
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <img src="{{ user.contactCard.photoUrl }}" alt="headshot" class="img-responsive">
+                        </div>
+                        <div class="col-xs-8">
+                            <h4>{{ user.contactCard.firstName }}  {{ user.contactCard.lastName }}</h4>
+                            <p><span class="title">Title: </span>{{ user.contactCard.title }}</p>
+                            <p><span class="title">Department: </span>{{ user.contactCard.department }}</p>
+                            <p><span class="title">Phone: </span>{{ user.contactCard.phone }}</p>
+                            <p><span class="title">Ext: </span>{{ user.contactCard.extension }}</p>
+                            <p><span class="title">Email: </span>{{ user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-repeat="contact in contacts | orderBy: 'lastName' | filter:searchText">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <img src="{{ contact.photoUrl }}" alt="headshot" class="img-responsive">
+                        </div>
+                        <div class="col-xs-8">
+                            <h4>{{ contact.firstName }}  {{ contact.lastName }}</h4>
+                            <p><span class="title">Title: </span>{{ contact.title }}</p>
+                            <p><span class="title">Department: </span>{{ contact.department }}</p>
+                            <p><span class="title">Phone: </span>{{ contact.phone }}</p>
+                            <p><span class="title">Ext: </span>{{ contact.extension }}</p>
+                            <p><span class="title">Email: </span>{{ contact.email }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum consequat erat sed fermentum. Fusce vel est vitae est volutpat ultricies a ac dolor. Maecenas eleifend tempus ipsum, nec cursus felis malesuada eget. Phasellus imperdiet massa sed lectus dictum, viverra vehicula enim venenatis. Nulla sagittis neque sed sem dignissim bibendum. Phasellus commodo ut orci non fringilla. Quisque quis luctus erat. Donec volutpat congue purus. Sed porttitor urna vel urna volutpat tincidunt. Donec vitae accumsan diam. Aliquam dolor diam, eleifend non lectus a, tempor sodales mi. In hac habitasse platea dictumst. Sed sodales justo eu libero dictum dapibus. In maximus tristique urna, vitae volutpat sapien fringilla vel.
+
+                In hac habitasse platea dictumst. Curabitur at pulvinar nulla. Nunc dignissim viverra tristique. Nulla volutpat vulputate pharetra. Etiam lacinia non diam a feugiat. Praesent ullamcorper aliquet congue. Vivamus erat nisl, maximus a bibendum a, pretium nec odio. Praesent metus sapien, consectetur maximus interdum ut, porttitor aliquet nulla. Nam viverra elementum viverra. Suspendisse tellus risus, pharetra in tincidunt vitae, mollis quis lacus. Pellentesque volutpat, odio eu tincidunt elementum, enim nisl pellentesque velit, vitae molestie velit ante in sapien. Praesent at velit id est condimentum venenatis. Suspendisse laoreet consectetur odio, vel tempus erat tempor vel. Aliquam hendrerit eu erat porta scelerisque.
+
+                Sed elementum vitae felis suscipit finibus. Proin sodales iaculis magna, eget vestibulum mi gravida in. Nullam non aliquet enim, ac tempus est. In elementum id leo sed aliquam. Aenean vehicula felis a ultrices ullamcorper. Suspendisse vel tellus eu urna semper lacinia id at odio. In viverra finibus augue eu porttitor. Etiam at sem quis dui sagittis tempus at ut dui. Nam id eleifend nibh, id consectetur metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor sit amet lacus quis ultricies. Fusce rutrum nisl non tortor suscipit, sed elementum elit porta. Aenean elementum tortor eu nunc dapibus blandit placerat et arcu. Sed vulputate condimentum velit id blandit. Aliquam vulputate elit eget accumsan tristique. Quisque libero mi, posuere ut elit eget, laoreet fermentum erat.
+            </p>
+        </div>
+    </div>
+</div>
+
