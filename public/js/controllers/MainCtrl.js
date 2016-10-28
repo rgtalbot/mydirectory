@@ -24,15 +24,50 @@ angular.module('MainCtrl', []).controller("MainController", ["$scope", "$http", 
 
     $scope.companyChange = function () {
         console.log('length', $scope.companyName.length);
-        var company = $scope.companyName;
+        var company = $scope.companyName.toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9-]/gi, "");
+        console.log(company);
 
-        if (company.length > 0) {
-            company.toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9-]/gi, "");
-            console.log(company);
-        }
+        var string = company;
+        var length = 20;
+        var trimmedString = string.length > length ?
+            string.substring(0, 20) :
+            string;
 
-        $scope.urlName = company;
+        $scope.urlName = trimmedString;
         $scope.urlValidate($setValidity);
 
+    };
+
+    $scope.submitForm = function (isValid) {
+
+        if (isValid) {
+            console.log('hell yes');
+        } else {
+            console.log('damnit');
+        }
+        var company = $scope.signUpForm;
+        var newCompany = {
+            name: company.companyName,
+            address: company.address,
+            city: company.city,
+            state: company.state,
+            zip: company.zip,
+            directoryUrl: company.urlName,
+            email: company.email,
+            password: company.password,
+            firstName: company.firstName,
+            lastName: company.lastName,
+            title: company.title,
+            department: company.department,
+            phone: company.phone,
+            extension: company.ext
+        };
+
+        console.log(newCompany);
+
+        $scope.signUpForm = {};
+
+        // $http.post('/api/new', newCompany).then(function(){}, function(){});
     }
+
 }]);

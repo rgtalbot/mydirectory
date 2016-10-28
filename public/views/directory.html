@@ -3,11 +3,88 @@
         <div class="navbar-header">
             <span class="logo">MyDirectory.io</span>
         </div>
-        <div class="nav navbar-nav navbar-right">
-            <a href="">{{user.contactCard.firstName}}</a>
-        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="" data-toggle="modal" data-target="#createModal">Add User</a></li>
+            <li><a href="" ng-click="newCompany()">{{user.contactCard.firstName}}</a></li>
+        </ul>
     </div>
 </nav>
+
+<div id="createModal" class="modal" aria-labelledby="myModalLabel" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <h2 class="text-center">Add a user to your directory</h2>
+            <form id="signUpForm" name="signUpForm" role="form" data-toggle="validator">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required
+                           pattern="^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$">
+                    <div class="help-block with-errors"></div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" maxlength="50" class="form-control" id="firstName" name="firstName"
+                                   required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" maxlength="50"
+                                   required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="title">Job Title</label>
+                            <input type="text" maxlength="50" class="form-control" id="title" name="title" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <input type="text" class="form-control" id="department" name="department" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required
+                                   pattern="^[0-9]{1,}$" data-minlength="10" maxlength="10"
+                                   data-pattern-error="Numbers only"
+                                   data-minlength-error="Please enter a valid phone number">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label for="ext">Extension</label>
+                            <input type="text" class="form-control" id="ext" name="ext" pattern="^[0-9]{1,}$"
+                                   data-minlength="1" maxlength="5" data-pattern-error="Numbers only">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-flat btn" id="submit">Create User
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="container">
 
@@ -26,7 +103,7 @@
                             <img src="{{ user.contactCard.photoUrl }}" alt="headshot" class="img-responsive">
                         </div>
                         <div class="col-xs-8">
-                            <h4>{{ user.contactCard.firstName }}  {{ user.contactCard.lastName }}</h4>
+                            <h4>{{ user.contactCard.firstName }} {{ user.contactCard.lastName }}</h4>
                             <p><span class="title">Title: </span>{{ user.contactCard.title }}</p>
                             <p><span class="title">Department: </span>{{ user.contactCard.department }}</p>
                             <p><span class="title">Phone: </span>{{ user.contactCard.phone }}</p>
@@ -44,24 +121,27 @@
                             <img src="{{ contact.photoUrl }}" alt="headshot" class="img-responsive">
                         </div>
                         <div class="col-xs-8">
-                            <h4>{{ contact.firstName }}  {{ contact.lastName }}</h4>
+                            <h4>{{ contact.firstName }} {{ contact.lastName }}</h4>
                             <p><span class="title">Title: </span>{{ contact.title }}</p>
                             <p><span class="title">Department: </span>{{ contact.department }}</p>
                             <p><span class="title">Phone: </span>{{ contact.phone }}</p>
                             <p><span class="title">Ext: </span>{{ contact.extension }}</p>
                             <p><span class="title">Email: </span>{{ contact.email }}</p>
+                            <p><span class="title">Admin: </span>{{ contact.isAdmin }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-5">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum consequat erat sed fermentum. Fusce vel est vitae est volutpat ultricies a ac dolor. Maecenas eleifend tempus ipsum, nec cursus felis malesuada eget. Phasellus imperdiet massa sed lectus dictum, viverra vehicula enim venenatis. Nulla sagittis neque sed sem dignissim bibendum. Phasellus commodo ut orci non fringilla. Quisque quis luctus erat. Donec volutpat congue purus. Sed porttitor urna vel urna volutpat tincidunt. Donec vitae accumsan diam. Aliquam dolor diam, eleifend non lectus a, tempor sodales mi. In hac habitasse platea dictumst. Sed sodales justo eu libero dictum dapibus. In maximus tristique urna, vitae volutpat sapien fringilla vel.
+            <div ng-if="user.isAdmin===true">
+                <div ng-include src="'views/partials/admin.html'"></div>
+            </div>
+            <div ng-if="user.isAdmin===false">
+                <div ng-include src="'views/partials/user.html'"></div>
+            </div>
 
-                In hac habitasse platea dictumst. Curabitur at pulvinar nulla. Nunc dignissim viverra tristique. Nulla volutpat vulputate pharetra. Etiam lacinia non diam a feugiat. Praesent ullamcorper aliquet congue. Vivamus erat nisl, maximus a bibendum a, pretium nec odio. Praesent metus sapien, consectetur maximus interdum ut, porttitor aliquet nulla. Nam viverra elementum viverra. Suspendisse tellus risus, pharetra in tincidunt vitae, mollis quis lacus. Pellentesque volutpat, odio eu tincidunt elementum, enim nisl pellentesque velit, vitae molestie velit ante in sapien. Praesent at velit id est condimentum venenatis. Suspendisse laoreet consectetur odio, vel tempus erat tempor vel. Aliquam hendrerit eu erat porta scelerisque.
 
-                Sed elementum vitae felis suscipit finibus. Proin sodales iaculis magna, eget vestibulum mi gravida in. Nullam non aliquet enim, ac tempus est. In elementum id leo sed aliquam. Aenean vehicula felis a ultrices ullamcorper. Suspendisse vel tellus eu urna semper lacinia id at odio. In viverra finibus augue eu porttitor. Etiam at sem quis dui sagittis tempus at ut dui. Nam id eleifend nibh, id consectetur metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor sit amet lacus quis ultricies. Fusce rutrum nisl non tortor suscipit, sed elementum elit porta. Aenean elementum tortor eu nunc dapibus blandit placerat et arcu. Sed vulputate condimentum velit id blandit. Aliquam vulputate elit eget accumsan tristique. Quisque libero mi, posuere ut elit eget, laoreet fermentum erat.
-            </p>
         </div>
     </div>
 </div>

@@ -15,7 +15,6 @@ angular.module('appRoutes', ['ui.router']).config(['$locationProvider', '$stateP
                         method: 'GET',
                         url: "https://my-directory-api.herokuapp.com/api/v1/organizations/" + $stateParams.orgId
                     }).then(function successCallback(response) {
-                        console.log(response.data);
                         return ({
                             org: response.data,
                             id: $stateParams.orgId

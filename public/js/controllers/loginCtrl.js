@@ -18,8 +18,6 @@ angular.module('loginCtrl', []).controller("LoginController", ["$scope", "items"
 
         AuthService($http, $sessionStorage, user.email, user.password, directoryUrl, function(cb) {
             if (cb == true) {
-                console.log('success');
-                console.log($sessionStorage.currentUser);
                 $state.go('directory', {orgId: directoryUrl});
             }
         });
@@ -35,7 +33,7 @@ function AuthService($http, $sessionStorage, username, password, url, callback) 
 
 
     var queryString = "https://my-directory-api.herokuapp.com/api/v1/auth/login/" + url;
-    $http.post(queryString, {username: username, password: password})
+    $http.post(queryString, {email: username, password: password})
         .success(function (response) {
             // login successful if there's a token in the response
             if (response.token) {

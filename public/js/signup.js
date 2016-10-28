@@ -63,9 +63,6 @@ $(document).ready(function () {
             };
 
 
-            $.post('/new', newCompany);
-
-
             $("#signUpForm")[0].reset();
             return false;
         }
