@@ -3,7 +3,7 @@ app.controller("DirectoryController", ["$scope", "$state", "$stateParams", "$htt
     var orgId = $stateParams.orgId;
 
     var queryString = "https://my-directory-api.herokuapp.com/api/v1/" + orgId + "/contacts";
-    console.log($sessionStorage.currentUser);
+
     if ($sessionStorage.currentUser !== undefined) {
         $http.get(queryString, {
             headers: {
@@ -13,7 +13,7 @@ app.controller("DirectoryController", ["$scope", "$state", "$stateParams", "$htt
 
             var contactList = response.data.contacts;
             $scope.user = response.data.user;
-            var organization = response.data.organization;
+            $scope.organization = response.data.organization;
 
 
             $scope.contacts = contactList.map(function (contact) {
@@ -21,7 +21,7 @@ app.controller("DirectoryController", ["$scope", "$state", "$stateParams", "$htt
                 return contact;
             });
 
-        }, function errorCallback(response) {
+        }, function errorCallback() {
             $state.go('login', {orgId: orgId});
         });
     } else {

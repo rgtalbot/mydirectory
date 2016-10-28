@@ -1,4 +1,4 @@
-var app = angular.module('myDirectory', ['ngRoute', 'ui.router', "ngStorage", 'ui.bootstrap']);
+var app = angular.module('myDirectory', ['ngRoute', 'ui.router', "ngStorage", 'ui.bootstrap', 'ngAnimate']);
 
 
 
