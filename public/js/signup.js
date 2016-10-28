@@ -26,6 +26,32 @@ $(document).ready(function () {
     $("#signUpForm").validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
             console.log(e.isDefaultPrevented());
+            var testCompany = {
+                name: "fake name",
+                address: "123 Main St",
+                city: "Orlando",
+                state: "FL",
+                zip: "34787",
+                directoryUrl: "completelynew",
+                email: "rgtalbot@gmail.com",
+                password: "test314",
+                firstName: "Ryan",
+                lastName: "Talbot",
+                title: "Form Validation Master",
+                department: "Fucking Boss",
+                phone: "4073258449",
+                extension: ""
+            };
+            console.log(testCompany);
+
+            $.post("/api/new", testCompany, function (data) {
+                if (data.success)
+                    console.log('success');
+                else
+                    console.log(data);
+            });
+
+            // window.location.replace('/deathstar');
         } else {
             $("#submit").show();
             //submit that shiz

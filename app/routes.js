@@ -14,9 +14,9 @@ router.post('/api/new', function (req, res) {
     request.post(myDirectory + "auth/register", function (error, response, body) {
         if (error)
             console.log(error);
+        console.log(body);
+        res.send(body);
     });
-
-    // res.redirect('*');
 });
 
 
