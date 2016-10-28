@@ -1,12 +1,10 @@
-angular.module('DirectoryCtrl', []).controller("DirectoryController", ["$scope", "$state", "$stateParams", "$http", "$sessionStorage", function ($scope, $state, $stateParams, $http, $sessionStorage) {
-
+app.controller("DirectoryController", ["$scope", "$state", "$stateParams", "$http", "$sessionStorage", function ($scope, $state, $stateParams, $http, $sessionStorage) {
 
     var orgId = $stateParams.orgId;
 
-
     var queryString = "https://my-directory-api.herokuapp.com/api/v1/" + orgId + "/contacts";
-
-    if ($sessionStorage.currentUser.token !== null) {
+    console.log($sessionStorage.currentUser);
+    if ($sessionStorage.currentUser !== undefined) {
         $http.get(queryString, {
             headers: {
                 "x-access-token": $sessionStorage.currentUser.token

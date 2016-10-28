@@ -11,9 +11,13 @@ var myDirectory = "https://my-directory-api.herokuapp.com/api/v1/";
 router.post('/api/new', function (req, res) {
     console.log('here?');
     console.log(req.body);
-    request.post(myDirectory + "auth/register", function (error, response, body) {
-        if (error)
-            console.log(error);
+    var newCompany = req.body;
+    request({
+        url: myDirectory + "auth/register",
+        method: "POST",
+        form: newCompany
+    }, function(error, response, body) {
+        console.log(response.statusCode);
         console.log(body);
         res.send(body);
     });

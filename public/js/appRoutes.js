@@ -1,4 +1,4 @@
-angular.module('appRoutes', ['ui.router']).config(['$locationProvider', '$stateProvider', function ($locationProvider, $stateProvider) {
+app.config(['$locationProvider', '$stateProvider', function ($locationProvider, $stateProvider) {
 
     $stateProvider
         .state('home', {

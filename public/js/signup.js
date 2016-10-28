@@ -32,7 +32,7 @@ $(document).ready(function () {
                 city: "Orlando",
                 state: "FL",
                 zip: "34787",
-                directoryUrl: "completelynew",
+                directoryUrl: "testmeout",
                 email: "rgtalbot@gmail.com",
                 password: "test314",
                 firstName: "Ryan",
@@ -42,6 +42,8 @@ $(document).ready(function () {
                 phone: "4073258449",
                 extension: ""
             };
+
+
             console.log(testCompany);
 
             $.post("/api/new", testCompany, function (data) {
