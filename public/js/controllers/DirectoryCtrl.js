@@ -1,13 +1,16 @@
 app.controller("DirectoryController", ["$scope", "$state", "$stateParams", "$http", "$sessionStorage", function ($scope, $state, $stateParams, $http, $sessionStorage) {
 
     var orgId = $stateParams.orgId;
+    var token = $stateParams.token;
+
+    console.log(token);
 
     var queryString = "https://my-directory-api.herokuapp.com/api/v1/" + orgId + "/contacts";
 
-    if ($sessionStorage.currentUser !== undefined) {
+    if ($sessionStorage.currentUser !== undefined && token !== undefined) {
         $http.get(queryString, {
             headers: {
-                "x-access-token": $sessionStorage.currentUser.token
+                "x-access-token": $sessionStorage.currentUser.token || token
             }
         }).then(function successCallback(response) {
 

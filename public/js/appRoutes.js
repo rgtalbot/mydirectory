@@ -29,7 +29,10 @@ app.config(['$locationProvider', '$stateProvider', function ($locationProvider, 
         .state('directory', {
             url: "/:orgId/directory",
             templateUrl: "views/directory.html",
-            controller: "DirectoryController"
+            controller: "DirectoryController",
+            params: {
+                token: null
+            }
         });
 
     $locationProvider.html5Mode(true);

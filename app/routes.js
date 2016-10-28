@@ -17,8 +17,6 @@ router.post('/api/new', function (req, res) {
         method: "POST",
         form: newCompany
     }, function(error, response, body) {
-        console.log(response.statusCode);
-        console.log(body);
         res.send(body);
     });
 });
