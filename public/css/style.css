@@ -8,6 +8,10 @@ nav {
     color: #ffffff;
 }
 
+.userNav {
+    color: white;
+}
+
 .signUpBtn {
     background-color: #003399;
     color: #6699ff;
@@ -37,6 +41,19 @@ footer.page-footer .footer-copyright {
     -webkit-border-radius:50%;
     -moz-border-radius:50%;
     border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.userPanel {
+    background-color: #79BEDB;
+    opacity: .9;
+}
+
+.sideStuff {
+    border-style: solid;
+    border-color: #3366CC;
+    
 }
 
 form {
@@ -47,3 +64,19 @@ form {
     padding: 5px 0;
 }
 
+.text-muted {
+    color: white;
+}
+
+.raised{
+    background-color: #3366CC;
+    border-color: #003366;
+    border-style: solid;
+    box-shadow: 0 3px 0 0 #003366;
+}
+
+.loginName {
+    font-family: impact;
+    font-weight: bold;
+    font-size: 3rem;
+}
