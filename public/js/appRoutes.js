@@ -38,3 +38,6 @@ app.config(['$locationProvider', '$stateProvider', function ($locationProvider, 
     $locationProvider.html5Mode(true);
 
 }]);
+
+
+

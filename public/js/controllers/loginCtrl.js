@@ -19,7 +19,6 @@ app.controller("LoginController", ["$scope", "items", "$state", "AuthService", "
         var directoryUrl = items.id;
         var queryString = "https://my-directory-api.herokuapp.com/api/v1/auth/login/" + directoryUrl;
 
-
         //run authorization factory to see if the user gave the current information
         AuthService.authorize(email, password, queryString, function (cb) {
             if (cb == true) {
@@ -28,3 +27,21 @@ app.controller("LoginController", ["$scope", "items", "$state", "AuthService", "
         });
     }
 }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,35 +10,33 @@
 <div id="login-page" class="container">
     <form>
         <div class="row">
-            <div class="col-xs-6 col-xs-offset-3">
+            <div class="col-xs-6 col-xs-offset-3 text-center">
                 <img src="{{details.logoUrl}}" alt="logo" class="img-responsive imgThumb">
                 <p class="center login-form-text loginName">{{ details.name }} Login</p>
             </div>
         </div>
-        <form name="loginForm">
-            <div class="row">
-
-                <div class="col-xs-6 col-xs-offset-3">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    <label for="email">Email</label>
-                    <input id="email" type="email" name="email" class="form-control" ng-model="user.email" required>
-                </div>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <form name="loginForm">
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" class="form-control" ng-model="user.email" required>
+                    </div>
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" class="form-control"
+                               ng-model="user.password"
+                               required>
+                    </div>
+                    <input type="checkbox" name="rememberMe" id="rememberMe" ng-model="rememberMe">
+                    <label for="rememberMe">Remember Me</label>
+                    <br>
+                    <button type="submit" ng-click="logMeIn()" class="btn btn-success right">Login</button>
+                </form>
             </div>
-            <div class="row">
-                <div class="col-xs-6 col-xs-offset-3">
-                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                    <label for="password">Password</label>
-                    <input id="password" type="password" name="password" class="form-control" ng-model="user.password"
-                           required>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-xs-6 col-xs-offset-3">
-                    <button type="submit" ng-click="logMeIn()" class="btn btn-success">Login</button>
-                </div>
-            </div>
-        </form>
+        </div>
 </div>
 <!--REMEMBER ME DOES NOT WORK-->
 <!--<div class="row">-->

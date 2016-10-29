@@ -19,6 +19,7 @@ app.factory('AuthService', ['$http', "$sessionStorage", function ($http, $sessio
                     // add jwt token to auth header for all requests made by the $http service
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
 
+
                     // execute callback with true to indicate successful login
                     callback(true);
                 } else {
@@ -31,3 +32,13 @@ app.factory('AuthService', ['$http', "$sessionStorage", function ($http, $sessio
 }
 
 }]);
+
+
+
+
+
+
+
+
+
+

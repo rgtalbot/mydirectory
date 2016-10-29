@@ -3,7 +3,6 @@ app.controller("DirectoryController", ["$scope", "$state", "$stateParams", "$htt
     var orgId = $stateParams.orgId;
     var token = $stateParams.token;
 
-    console.log(token);
 
     var queryString = "https://my-directory-api.herokuapp.com/api/v1/" + orgId + "/contacts";
 
@@ -28,6 +27,15 @@ app.controller("DirectoryController", ["$scope", "$state", "$stateParams", "$htt
             $state.go('login', {orgId: orgId});
         });
     } else {
+        $state.go('login', {orgId: orgId});
+    }
+
+    $scope.editUser = function() {
+
+    };
+
+    $scope.logout = function() {
+        delete $sessionStorage.currentUser;
         $state.go('login', {orgId: orgId});
     }
 

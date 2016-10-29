@@ -3,9 +3,18 @@
         <div class="navbar-header">
             <span class="logo"><img src="../img/logo.png" class="img-responsive" style="max-height: 75px"></span>
         </div>
-        <div class="nav navbar-nav navbar-right">
-            <a class="userNav" href="">{{user.contactCard.firstName}}</a>
-        </div>
+        <ul class="nav navbar-nav navbar-right userNav">
+            <li><a href="" data-toggle="modal" data-target="#createModal">Add User</a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.contactCard.firstName}}</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Edit Profile</a></li>
+                    <li><a href="#" ng-click="logout()">Log out</a></li>
+                </ul>
+            </li>
+
+        </ul>
     </div>
 </nav>
 
@@ -99,7 +108,7 @@
 
                     <div class="row">
                         <div class="col-xs-4">
-                            <img src="{{ user.contactCard.photoUrl }}" alt="headshot" class="img-responsive">
+                            <img src="{{ user.contactCard.photoUrl }}" alt="headshot" class="img-responsive headshot">
                         </div>
                         <div class="col-xs-8">
                             <h4>{{ user.contactCard.firstName }} {{ user.contactCard.lastName }}</h4>
@@ -107,36 +116,37 @@
                             <p><span class="title">Department: </span>{{ user.contactCard.department }}</p>
                             <p><span class="title">Phone: </span>{{ user.contactCard.phone }}</p>
                             <p><span class="title">Ext: </span>{{ user.contactCard.extension }}</p>
-                            <p><span class="title">Email: </span>{{ user.email }}</p>
+                            <p><span class="title">Email: </span><a href="mailto:{{user.email}}">{{ user.email }}</a></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default" ng-repeat="contact in contacts | orderBy: 'lastName' | filter:searchText">
+            <div class="panel panel-default contactPanel" ng-repeat="contact in contacts | orderBy: 'lastName' | filter:searchText">
                 <div class="panel-body">
 
                     <div class="row">
                         <div class="col-xs-4">
-                            <img src="{{ contact.photoUrl }}" alt="headshot" class="img-responsive">
+                            <img src="{{ contact.photoUrl }}" alt="headshot" class="img-responsive headshot">
                         </div>
                         <div class="col-xs-8">
+                            <span ng-if="user.isAdmin" ng-click="editUser()" class="glyphicon btn glyphicon-edit editBtn" aria-hidden="true"></span>
                             <h4>{{ contact.firstName }} {{ contact.lastName }}</h4>
                             <p><span class="title">Title: </span>{{ contact.title }}</p>
                             <p><span class="title">Department: </span>{{ contact.department }}</p>
                             <p><span class="title">Phone: </span>{{ contact.phone }}</p>
                             <p><span class="title">Ext: </span>{{ contact.extension }}</p>
-                            <p><span class="title">Email: </span>{{ contact.email }}</p>
+                            <p><span class="title">Email: </span><a href="mailto:{{contact.email}}">{{ contact.email }}</a></p>
                             <p><span class="title">Admin: </span>{{ contact.isAdmin }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xs-5 sideStuff">
-            <div ng-if="user.isAdmin===true">
+        <div class="col-xs-5">
+            <div ng-if="user.isAdmin">
                 <div ng-include src="'views/partials/admin.html'"></div>
             </div>
-            <div ng-if="user.isAdmin===false">
+            <div ng-if="!user.isAdmin">
                 <div ng-include src="'views/partials/user.html'"></div>
             </div>
 
@@ -145,19 +155,3 @@
     </div>
 </div>
 
-<!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <p class="text-muted text-left">UCF Coding Boot Camp</p>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <p class="text-muted text-center">Made with <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color:red;"></span> by Team Sour Patch Coders</p>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <p class="text-muted text-right">Copyright &copy 2016. All rights reserved.</p>
-            </div>
-            <!-- TODO: ADD PRIVACY POLICY LINK -->
-            <!-- TODO: ADD TERMS OF USE LINK -->
-        </div>
-    </footer>
